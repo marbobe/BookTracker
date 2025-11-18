@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface IBookService {
     public List<Book> findAll();
     public Optional<Book> findById(Integer id);
-    public Book save(Book book);
+    public void save(Book book);
     public void deleteById(Integer id);
 }

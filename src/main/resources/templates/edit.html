@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header::header-section(title='Edit Book')}">
+</head>
+<body>
+<!-- Nav Bar -->
+<div th:replace="~{fragments/navigation::navigation-section}"/>
+
+<div class="container">
+    <div class="container texte-center" style="margin:30px">
+        <h3>Edit book</h3>
+    </div>
+    <div class="container">
+        <form action="/edit" th:object="${book}" method="post">
+            <input type="hidden" th:field="*{idBook}"/>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required="true" th:field="*{title}">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" name="author" required="true" th:field="*{author}">
+            </div>
+            <div class="mb-3">
+                <label for="finishDate" class="form-label">Finished Date</label>
+                <input type="date" class="form-control" id="finishDate" name="finishDate" th:field="*{finishDate}">
+            </div>
+            <div class="mb-3">
+                <label for="score" class="form-label">Score</label>
+                <input type="number" class="form-control" id="score" name="score" aria-describedby="scoreHelp" th:field="*{score}">
+                <div id="scoreHelp" class="form-text">Make sure to rate the book using a number between 1 and 5.</div>
+            </div>
+            <div class="mb-3">
+                <label for="review" class="form-label">Review</label>
+                <input type="text" class="form-control" id="review" name="review" th:field="*{review}">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning btn-small me-3">Edit</button>
+                <a href="/" class="btn btn-danger btn-small">Return</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--footer -->
+<div th:replace="~{fragments/footer::footer-section}"/>
+</body>
+</html>

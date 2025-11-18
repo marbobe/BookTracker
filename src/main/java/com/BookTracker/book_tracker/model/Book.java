@@ -22,7 +22,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBook;
     @NotBlank
-    private String name;
+    private String title;
     @NotBlank
     private String author;
     private LocalDate finishDate;
