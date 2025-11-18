@@ -6,41 +6,60 @@
 <!-- Nav Bar -->
 <div th:replace="~{fragments/navigation::navigation-section}"/>
 
-<div class="container">
-    <div class="container texte-center" style="margin:30px">
-        <h3>Edit book</h3>
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h3 class="text-center mb-4">Edit Book</h3>
     </div>
     <div class="container">
-        <form action="/edit" th:object="${book}" method="post">
+        <form th:action="@{/books/edit}" th:object="${book}" method="post">
             <input type="hidden" th:field="*{idBook}"/>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" required="true" th:field="*{title}">
+                <p th:errors="*{title}">Invalid title</p>
             </div>
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
                 <input type="text" class="form-control" id="author" name="author" required="true" th:field="*{author}">
+                <p th:errors="*{author}">Invalid author</p>
             </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" th:field="*{genre}">
+                    <p th:errors="*{genre}">Invalid genre</p>
+            </div>
+
             <div class="mb-3">
                 <label for="finishDate" class="form-label">Finished Date</label>
                 <input type="date" class="form-control" id="finishDate" name="finishDate" th:field="*{finishDate}">
+                <p th:errors="*{finishDate}">Invalid date</p>
             </div>
             <div class="mb-3">
-                <label for="score" class="form-label">Score</label>
-                <input type="number" class="form-control" id="score" name="score" aria-describedby="scoreHelp" th:field="*{score}">
-                <div id="scoreHelp" class="form-text">Make sure to rate the book using a number between 1 and 5.</div>
+                <label class="form-label">Score</label>
+                <input type="hidden" th:field="*{score}" id="score">
+                <div id="star-container">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <p th:errors="*{score}">Invalid score</p>
             </div>
             <div class="mb-3">
                 <label for="review" class="form-label">Review</label>
                 <input type="text" class="form-control" id="review" name="review" th:field="*{review}">
+                <p th:errors="*{review}">Invalid review</p>
             </div>
-            <div class="text-center">
+            <div class="text-center mb-3">
                 <button type="submit" class="btn btn-warning btn-small me-3">Edit</button>
-                <a href="/" class="btn btn-danger btn-small">Return</a>
+                <a th:href="@{/books}" class="btn btn-danger btn-small">Return</a>
             </div>
         </form>
     </div>
 </div>
+<!-- Script para manejar las estrellas -->
+<script th:src="@{/js/stars.js}"></script>
 
 <!--footer -->
 <div th:replace="~{fragments/footer::footer-section}"/>

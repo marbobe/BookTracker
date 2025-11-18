@@ -1,52 +1,244 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header::header-section(title='Home')}">
-</head>
-<body>
-<!-- Nav Bar -->
-<div th:replace="~{fragments/navigation::navigation-section}"/>
-<!-- Table -->
-<div class="container">
-    <div class="container text-center" style="margin:30px">
-        <div class="container">
+<head th:replace="~{fragments/header::header-section(title='Home')}"></head>
 
-        <h3>Books</h3>
-            <table class="table table-striped table-hover align-middle">
+<body>
+
+<div th:with="filtersActive=${title != null or author != null or finishDate != null or score != null}">
+
+    <!-- Nav Bar -->
+    <div th:replace="~{fragments/navigation::navigation-section}"></div>
+
+    <!-- Table -->
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h3 class="mb-4 text-center">Books</h3>
+
+            <!-- FILTER BUTTONS -->
+            <div class="text-center mb-3">
+
+                <!-- Botón cuando NO hay filtros -->
+                <button th:if="${!filtersActive}"
+                        class="btn btn-secondary mb-3"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#filterForm">
+                    Filter Books
+                </button>
+
+                <!-- Botón cuando HAY filtros -->
+                <a th:if="${filtersActive}"
+                   href="/books/clear"
+                   class="btn btn-danger mb-3">
+                    Clear Filters
+                </a>
+            </div>
+
+            <!-- FILTER FORM -->
+            <div class="collapse mb-4" id="filterForm"
+                 th:classappend="${filtersActive} ? ' show'">
+
+                <form id="filterFormContent"
+                      th:action="@{/books}"
+                      method="get"
+                      class="row g-3">
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="title" placeholder="Title"
+                               th:value="${title}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="author" placeholder="Author"
+                               th:value="${author}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" name="finishDate"
+                               th:value="${finishDate}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" min="1" max="5" class="form-control"
+                               name="score" placeholder="Score"
+                               th:value="${score}">
+                    </div>
+
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary w-100">Apply</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- TABLE -->
+            <table class="table table-striped table-hover align-middle text-center">
                 <thead class="table-dark text-center">
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Finish Date</th>
-                    <th scope="col">Score</th>
+
+                        <!-- Title -->
+                    <th scope="col">
+                    <a th:href="@{/books(
+                        page=0,
+                        size=${bookPage.size},
+                        sortField='title',
+                        sortDir=${reverseSortDir},
+                        title=${title},
+                        author=${author},
+                        finishDate=${finishDate},
+                        score=${score}
+                    )}" class="text-white text-decoration-none">
+                                        Title
+                        <i th:if="${sortField == 'title'}"
+                           th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                    </a>
+
+                </th>
+
+                    <!-- Author -->
+                    <th scope="col">
+                        <a th:href="@{/books(
+                                page=0,
+                                size=${bookPage.size},
+                                sortField='author',
+                                sortDir=${sortField == 'author' ? reverseSortDir : 'asc'},
+                                title=${title},
+                                author=${author},
+                                finishDate=${finishDate},
+                                score=${score}
+                            )}" class="text-white text-decoration-none">
+                            Author
+                            <i th:if="${sortField == 'author'}"
+                               th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                        </a>
+                    </th>
+
+                    <!-- Genre -->
+                    <th scope="col">Genre</th>
+
+                    <!-- Finish Date -->
+                    <th scope="col">
+                        <a th:href="@{/books(
+                                page=0,
+                                size=${bookPage.size},
+                                sortField='finishDate',
+                                sortDir=${sortField == 'finishDate' ? reverseSortDir : 'asc'},
+                                title=${title},
+                                author=${author},
+                                finishDate=${finishDate},
+                                score=${score}
+                            )}" class="text-white text-decoration-none">
+                            Finish Date
+                            <i th:if="${sortField == 'finishDate'}"
+                               th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                        </a>
+                    </th>
+
+                    <!-- Score -->
+                    <th scope="col">
+                        <a th:href="@{/books(
+                                page=0,
+                                size=${bookPage.size},
+                                sortField='score',
+                                sortDir=${sortField == 'score' ? reverseSortDir : 'asc'},
+                                title=${title},
+                                author=${author},
+                                finishDate=${finishDate},
+                                score=${score}
+                            )}" class="text-white text-decoration-none">
+                            Score
+                            <i th:if="${sortField == 'score'}"
+                               th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                        </a>
+                    </th>
+
                     <th scope="col">Review</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr th:each="book: ${books}">
+                <tr th:each="book : ${bookPage.content}">
                     <th th:text="${book.idBook}" scope="row"></th>
                     <td th:text="${book.title}"></td>
                     <td th:text="${book.author}"></td>
+                    <td th:text="${book.genre}"></td>
                     <td th:text="${book.finishDate}"></td>
-                    <td th:text="${book.score}"></td>
+
+                    <!-- SCORE STARS -->
+                    <td>
+                        <span th:each="i : ${#numbers.sequence(1, 5)}"
+                              th:classappend="${i <= (book.score != null ? book.score : 0)} ? 'star' : 'text-muted'">★</span>
+                    </td>
+
                     <td th:text="${book.review}"></td>
+
                     <td class="text-center">
                         <div class="container">
-                            <a th:href="@{/edit/{id}(id=${book.idBook})}"
-                               class="btn btn-warning btn-small me-3">Edit</a>
+                            <a th:href="@{books/edit/{id}(id=${book.idBook})}"
+                               class="btn btn-warning btn-small me-3">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
 
-                            <a th:href="@{/delete/{id}(id=${book.idBook})}"
-                               class="btn btn-danger btn-small me-3">Delete</a>
+                            <a th:href="@{books/delete/{id}(id=${book.idBook})}"
+                               class="btn btn-danger btn-small me-3"
+                               onclick="return confirm('Are you sure you want to delete this book?')">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
                         </div>
                     </td>
                 </tr>
+
+                <tr th:if="${bookPage.totalElements == 0}">
+                    <td colspan="8" class="text-center">No books found.</td>
+                </tr>
                 </tbody>
             </table>
+
+            <!-- PAGINATION -->
+            <nav th:if="${bookPage.totalPages > 0}" aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+
+                    <!-- PREVIOUS -->
+                    <li class="page-item" th:classappend="${bookPage.first}? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/books(page=${bookPage.number - 1}, size=${bookPage.size},
+                                           title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}">
+                            Previous
+                        </a>
+                    </li>
+
+                    <!-- PAGE NUMBERS -->
+                    <li class="page-item"
+                        th:each="i : ${#numbers.sequence(0, bookPage.totalPages - 1)}"
+                        th:classappend="${i == bookPage.number}? 'active'">
+
+                        <a class="page-link"
+                           th:href="@{/books(page=${i}, size=${bookPage.size},
+                                           title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"
+                           th:text="${i + 1}">
+                        </a>
+                    </li>
+
+                    <!-- NEXT -->
+                    <li class="page-item" th:classappend="${bookPage.last}? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/books(page=${bookPage.number + 1}, size=${bookPage.size},
+                                           title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}">
+                            Next
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>
-<!--footer -->
-<div th:replace="~{fragments/footer::footer-section}"/>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer::footer-section}"></div>
+
 </body>
 </html>

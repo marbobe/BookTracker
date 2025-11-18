@@ -6,40 +6,74 @@
 <!-- Nav Bar -->
 <div th:replace="~{fragments/navigation::navigation-section}"/>
 
-<div class="container">
-    <div class="container texte-center" style="margin:30px">
-        <h3>Add new book</h3>
+<div class="card shadow-sm mt-4">
+    <div class="card-body">
+        <h3 class="text-center mb-4">Add New Book</h3>
     </div>
     <div class="container">
-        <form action="/new" modelAttribute="bookForm" method="post">
+        <form th:action="@{/books/new}" th:object="${book}" method="post">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required="true">
+                <input type="text" class="form-control" id="title" th:field="*{title}" required="true">
+                <div th:if="${#fields.hasErrors('title')}" class="text-danger">
+                    <p th:errors="*{title}">Invalid title</p>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="author" class="form-label">Author</label>
-                <input type="text" class="form-control" id="author" name="author" required="true">
+                <input type="text" class="form-control" id="author" th:field="*{author}" required="true">
+                <div th:if="${#fields.hasErrors('author')}" class="text-danger">
+                    <p th:errors="*{author}">Invalid author</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" th:field="*{genre}">
+                <div th:if="${#fields.hasErrors('genre')}" class="text-danger">
+                    <p th:errors="*{genre}">Invalid genre</p>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="finishDate" class="form-label">Finished Date</label>
-                <input type="date" class="form-control" id="finishDate" name="finishDate">
+                <input type="date" class="form-control" id="finishDate" th:field="*{finishDate}">
+                <div th:if="${#fields.hasErrors('finishDate')}" class="text-danger">
+                    <p th:errors="*{finishDate}">Invalid date</p>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="score" class="form-label">Score</label>
-                <input type="number" class="form-control" id="score" name="score" aria-describedby="scoreHelp">
-                <div id="scoreHelp" class="form-text">Make sure to rate the book using a number between 1 and 5.</div>
+
+                    <label class="form-label">Score</label>
+                    <input type="hidden" th:field="*{score}" id="score">
+                    <div id="star-container">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+
+                <div th:if="${#fields.hasErrors('score')}" class="text-danger">
+                    <p th:errors="*{score}">Invalid score</p>
+                </div>
             </div>
+
+
             <div class="mb-3">
                 <label for="review" class="form-label">Review</label>
-                <input type="text" class="form-control" id="review" name="review">
+                <input type="text" class="form-control" id="review" th:field="*{review}">
+                <div th:if="${#fields.hasErrors('review')}" class="text-danger">
+                    <p th:errors="*{review}">Invalid review</p>
+                </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mb-3">
                 <button type="submit" class="btn btn-warning btn-small me-3">Add</button>
-                <a href="/" class="btn btn-danger btn-small">Return</a>
+                <a th:href="@{/books}" class="btn btn-danger btn-small">Return</a>
             </div>
         </form>
     </div>
 </div>
+<!-- Script para manejar las estrellas -->
+<script th:src="@{/js/stars.js}"></script>
 
 <!--footer -->
 <div th:replace="~{fragments/footer::footer-section}"/>
