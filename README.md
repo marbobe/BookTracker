@@ -55,6 +55,7 @@ Para este proyecto se han aplicado buenas prácticas de ingeniería de software 
 ### Evolución del Proyecto (v2.0):
 - [ ] **Migración a Arquitectura Desacoplada:** Transformar el backend en una **API REST** pura.
 - [ ] **Frontend Moderno:** Reconstrucción total de la interfaz utilizando **React**, permitiendo una experiencia de Single Page Application (SPA) más fluida y moderna.
+- [ ] **Módulo de Inteligencia Artificial:** Implementación de un motor de recomendaciones basado en los gustos del usuario mediante **Spring AI y Google Gemini API**.
 
 ---
 
