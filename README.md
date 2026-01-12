@@ -64,4 +64,5 @@ Para este proyecto se han aplicado buenas prácticas de ingeniería de software 
 2. Asegurarse de tener instalado **JDK 21**.
 3. Ejecutar desde la terminal:
    ```bash
-   ./mvnw spring-boot:run
+   ./mvnw spring-boot:run ```
+4. Abrir en el navegador: http://localhost:8080/books
