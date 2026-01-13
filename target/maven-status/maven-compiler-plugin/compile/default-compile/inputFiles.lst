@@ -1,0 +1,6 @@
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/BookTrackerApplication.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/controller/BookController.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/model/Book.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/repository/BookRepository.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/service/BookService.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/service/IBookService.java
