@@ -12,6 +12,8 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   app:
     build: .
@@ -25,3 +27,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+volumes:
+  mysql_data:

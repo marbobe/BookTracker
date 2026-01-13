@@ -22,17 +22,27 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBook;
+
     @NotBlank(message = "Title is required")
     private String title;
+
     @NotBlank(message = "Author is required")
     private String author;
+
     private String genre;
+
     @PastOrPresent(message = "Finish date cannot be in the future")
     private LocalDate finishDate;
+
     @Min(value = 1, message = "Score must be at least 1")
     @Max(value = 5, message = "Score cannot be more than 5")
     private Integer score;
+
     @Column(length = 2000)
     private String review;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

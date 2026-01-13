@@ -1,5 +1,6 @@
 package com.BookTracker.book_tracker.service;
 
+import com.BookTracker.book_tracker.exception.BookNotFoundException;
 import com.BookTracker.book_tracker.model.Book;
 import com.BookTracker.book_tracker.repository.BookRepository;
 import org.springframework.data.domain.Page;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService implements IBookService{
@@ -29,8 +29,8 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public Optional<Book> findById(Integer id) {
-        return repository.findById(id);
+    public Book findById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new BookNotFoundException("El libro con ID " + id + " no existe en nuestra biblioteca."));
     }
 
     @Override

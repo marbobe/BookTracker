@@ -87,8 +87,7 @@ public class BookController {
     // FORM EDITAR
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Integer id, Model model) {
-        Book book = bookService.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Libro no encontrado"));
+        Book book = bookService.findById(id);
         model.addAttribute("book", book);
         return "edit";
     }

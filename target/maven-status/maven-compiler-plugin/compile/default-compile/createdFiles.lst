@@ -1,3 +1,5 @@
+com/BookTracker/book_tracker/exception/BookNotFoundException.class
+com/BookTracker/book_tracker/exception/GlobalExceptionHandler.class
 com/BookTracker/book_tracker/service/IBookService.class
 com/BookTracker/book_tracker/controller/BookController.class
 com/BookTracker/book_tracker/model/Book.class
