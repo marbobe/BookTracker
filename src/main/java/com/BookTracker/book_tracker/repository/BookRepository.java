@@ -1,6 +1,7 @@
 package com.BookTracker.book_tracker.repository;
 
 import com.BookTracker.book_tracker.model.Book;
+import com.BookTracker.book_tracker.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b FROM Book b " +
-            "WHERE (:title IS NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :title, '%'))) " +
+            "WHERE (:user = b.user) AND" + "(:title IS NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :title, '%'))) " +
             "AND (:author IS NULL OR LOWER(b.author) LIKE LOWER(CONCAT('%', :author, '%'))) " +
             "AND (:finishDate IS NULL OR b.finishDate <= :finishDate) " +
             "AND (:score IS NULL OR b.score >= :score)")
@@ -20,6 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             @Param("author") String author,
             @Param("finishDate") LocalDate finishDate,
             @Param("score") Integer score,
-            Pageable pageable
+            User user, Pageable pageable
     );
 }

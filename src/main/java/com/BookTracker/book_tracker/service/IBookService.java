@@ -1,6 +1,7 @@
 package com.BookTracker.book_tracker.service;
 
 import com.BookTracker.book_tracker.model.Book;
+import com.BookTracker.book_tracker.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,4 +17,6 @@ public interface IBookService {
     public void deleteById(Integer id);
 
     Page<Book> findByFilters(String title, String author, LocalDate finishDate, Integer score, Pageable pageable);
+
+    Page<Book> findByFilters(String title, String author, LocalDate finishDate, Integer score, User user, Pageable pageable);
 }

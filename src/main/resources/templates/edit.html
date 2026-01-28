@@ -11,7 +11,7 @@
         <h3 class="text-center mb-4">Edit Book</h3>
     </div>
     <div class="container">
-        <form th:action="@{/books/edit}" th:object="${book}" method="post">
+        <form th:action="@{/index/edit}" th:object="${book}" method="post">
             <input type="hidden" th:field="*{idBook}"/>
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -52,8 +52,8 @@
                 <p th:errors="*{review}">Invalid review</p>
             </div>
             <div class="text-center mb-3">
+                <a th:href="@{/index}" class="btn btn-danger btn-small">Return</a>
                 <button type="submit" class="btn btn-warning btn-small me-3">Edit</button>
-                <a th:href="@{/books}" class="btn btn-danger btn-small">Return</a>
             </div>
         </form>
     </div>

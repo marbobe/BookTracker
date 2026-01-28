@@ -1,3 +1,22 @@
+/* Añade esto a tu bloque de estilos */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    flex: 1 0 auto; /* Esto hará que este div crezca y empuje el footer al fondo */
+}
+
+footer {
+    flex-shrink: 0; /* Evita que el footer se aplaste */
+}
+
 body { background-color: #f7f9fc; }
         .card-book { box-shadow: 0 6px 18px rgba(12, 20, 40, 0.06); border-radius: 12px; }
         .table-actions a { margin-right: 6px; }

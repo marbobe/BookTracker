@@ -28,7 +28,7 @@
 
                 <!-- Botón cuando HAY filtros -->
                 <a th:if="${filtersActive}"
-                   href="/books/clear"
+                   href="/index/clear"
                    class="btn btn-danger mb-3">
                     Clear Filters
                 </a>
@@ -39,7 +39,7 @@
                  th:classappend="${filtersActive} ? ' show'">
 
                 <form id="filterFormContent"
-                      th:action="@{/books}"
+                      th:action="@{/index}"
                       method="get"
                       class="row g-3">
 
@@ -79,7 +79,7 @@
 
                         <!-- Title -->
                     <th scope="col">
-                    <a th:href="@{/books(
+                    <a th:href="@{/index(
                         page=0,
                         size=${bookPage.size},
                         sortField='title',
@@ -98,7 +98,7 @@
 
                     <!-- Author -->
                     <th scope="col">
-                        <a th:href="@{/books(
+                        <a th:href="@{/index(
                                 page=0,
                                 size=${bookPage.size},
                                 sortField='author',
@@ -119,7 +119,7 @@
 
                     <!-- Finish Date -->
                     <th scope="col">
-                        <a th:href="@{/books(
+                        <a th:href="@{/index(
                                 page=0,
                                 size=${bookPage.size},
                                 sortField='finishDate',
@@ -137,7 +137,7 @@
 
                     <!-- Score -->
                     <th scope="col">
-                        <a th:href="@{/books(
+                        <a th:href="@{/index(
                                 page=0,
                                 size=${bookPage.size},
                                 sortField='score',
@@ -176,12 +176,12 @@
 
                     <td class="text-center">
                         <div class="container">
-                            <a th:href="@{books/edit/{id}(id=${book.idBook})}"
+                            <a th:href="@{index/edit/{idBook}(idBook=${book.idBook})}"
                                class="btn btn-warning btn-small me-3">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
 
-                            <a th:href="@{books/delete/{id}(id=${book.idBook})}"
+                            <a th:href="@{index/delete/{idBook}(idBook=${book.idBook})}"
                                class="btn btn-danger btn-small me-3"
                                onclick="return confirm('Are you sure you want to delete this book?')">
                                 <i class="bi bi-trash"></i> Delete
@@ -203,7 +203,7 @@
                     <!-- PREVIOUS -->
                     <li class="page-item" th:classappend="${bookPage.first}? 'disabled'">
                         <a class="page-link"
-                           th:href="@{/books(page=${bookPage.number - 1}, size=${bookPage.size},
+                           th:href="@{/index(page=${bookPage.number - 1}, size=${bookPage.size},
                                            title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}">
                             Previous
                         </a>
@@ -215,7 +215,7 @@
                         th:classappend="${i == bookPage.number}? 'active'">
 
                         <a class="page-link"
-                           th:href="@{/books(page=${i}, size=${bookPage.size},
+                           th:href="@{/index(page=${i}, size=${bookPage.size},
                                            title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"
                            th:text="${i + 1}">
                         </a>
@@ -224,7 +224,7 @@
                     <!-- NEXT -->
                     <li class="page-item" th:classappend="${bookPage.last}? 'disabled'">
                         <a class="page-link"
-                           th:href="@{/books(page=${bookPage.number + 1}, size=${bookPage.size},
+                           th:href="@{/index(page=${bookPage.number + 1}, size=${bookPage.size},
                                            title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}">
                             Next
                         </a>

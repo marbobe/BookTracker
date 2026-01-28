@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     // Un "comodín" para cualquier otro error inesperado (Error 500)
     @ExceptionHandler(Exception.class)
     public String handleGenericException(Exception ex, Model model) {
-        model.addAttribute("errorMessage", "Ha ocurrido un error inesperado. Por favor, inténtelo más tarde.");
+        model.addAttribute("errorMessage", "Something unnexpected has happened. Try it again later");
         return "error/generic";
     }
 }
