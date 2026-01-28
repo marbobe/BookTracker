@@ -32,7 +32,7 @@
 | **Spring Data JPA** | Gestión de persistencia y abstracción de base de datos |
 | **Thymeleaf** | Motor de plantillas para renderizado server-side |
 | **Bootstrap 5** | Framework de estilos y diseño responsivo |
-| **H2 Database** | Base de datos en memoria para desarrollo y tests |
+| **MySQL** | Base de datos para presistencia de datos |
 | **Maven** | Gestión de dependencias y construcción del proyecto |
 
 ---
