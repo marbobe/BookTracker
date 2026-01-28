@@ -1,0 +1,46 @@
+/* Añade esto a tu bloque de estilos */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    flex: 1 0 auto; /* Esto hará que este div crezca y empuje el footer al fondo */
+}
+
+footer {
+    flex-shrink: 0; /* Evita que el footer se aplaste */
+}
+
+body { background-color: #f7f9fc; }
+        .card-book { box-shadow: 0 6px 18px rgba(12, 20, 40, 0.06); border-radius: 12px; }
+        .table-actions a { margin-right: 6px; }
+        .star { color: #e3b341; }
+        .no-data { color: #6c757d; font-style: italic; }
+        .hero { padding: 28px 0; }
+        .btn-small { padding: .35rem .6rem; font-size: .9rem; }
+
+
+.table tbody tr:hover {
+    background-color: #f3f3f3;
+    transition: 0.2s ease-in-out;
+}
+
+
+#star-container .star {
+    font-size: 1.5rem;
+    color: #b8860b; /* dorado por defecto */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#star-container .star.selected {
+    color: #ffc107; /* estrellas seleccionadas */
+}
+
+

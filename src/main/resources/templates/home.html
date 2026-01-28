@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header::header-section(title='Welcome')}"></head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" th:href="@{/}">
+            <i class="bi bi-book-half me-2"></i>BookTracker
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPublic">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navPublic">
+            <div class="ms-auto">
+                <a th:href="@{/login}" class="btn btn-link text-decoration-none text-muted me-3 fw-semibold">Login</a>
+                <a th:href="@{/register}" class="btn btn-primary px-4 rounded-pill fw-bold">Sign Up Free</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-section text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 120px 0; min-height: 85vh; display: flex; align-items: center;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">Your personal library, <span class="text-warning">organized.</span></h1>
+                <p class="lead mb-5 opacity-75">Track your reading progress, rate your favorite books, and manage your collection with ease. All in one place.</p>
+                <div class="d-grid gap-3 d-md-flex">
+                    <a th:href="@{/register}" class="btn btn-light btn-lg px-5 py-3 fw-bold text-primary shadow">Start My Library</a>
+                    <a href="#features" class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold">How it works</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block text-center">
+                <img th:src="@{/images/library.svg}" alt="Reading" class="img-fluid" style="max-height: 450px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));">
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="features" class="py-5 bg-white">
+    <div class="container py-5 text-center">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <i class="bi bi-shield-check display-4 text-primary"></i>
+                <h4 class="mt-3 fw-bold">Secure Access</h4>
+                <p class="text-muted">Your collection is private and protected by secure authentication.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-star display-4 text-primary"></i>
+                <h4 class="mt-3 fw-bold">Personal Ratings</h4>
+                <p class="text-muted">Rate your books from 1 to 5 stars and write detailed reviews.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-search display-4 text-primary"></i>
+                <h4 class="mt-3 fw-bold">Smart Filters</h4>
+                <p class="text-muted">Easily find any book by title, author, or score.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer::footer-section}"></div>
+
+</body>
+</html>

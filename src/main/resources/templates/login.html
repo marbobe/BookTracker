@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header::header-section(title='Login')}"></head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation::navigation-section}"></div>
+
+<main class="content-wrapper d-flex align-items-center py-5">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Welcome Back</h2>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label font-weight-bold">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person text-primary"></i></span>
+                                <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label font-weight-bold">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock text-primary"></i></span>
+                                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                            </div>
+                        </div>
+
+                        <div th:if="${param.error}" class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <div>Invalid user or password</div>
+                        </div>
+
+                        <div th:if="${param.logout}" class="alert alert-success d-flex align-items-center" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <div>You have been logged out</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm">Login</button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0 text-muted">Don't have an account?</p>
+                        <a href="/register" class="text-primary fw-bold text-decoration-none">Register here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+<div th:replace="~{fragments/footer::footer-section}"></div>
+</body>
+</html>
