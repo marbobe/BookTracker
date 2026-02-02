@@ -8,11 +8,13 @@
 
 ## 📸 App Screenshots
 
-<div align="center">
-  <img src="path/to/your/dashboard-image.png" alt="Dashboard Preview" width="400">
-  <img src="path/to/your/login-image.png" alt="Login Preview" width="400">
-  <p><em>Add your application screenshots in the assets folder and update the paths above.</em></p>
-</div>
+<img width="1390" height="658" alt="image" src="https://github.com/user-attachments/assets/a47f9eee-15e5-4810-a825-7bbe14c2ebd6" />
+<img width="1373" height="812" alt="image" src="https://github.com/user-attachments/assets/e1675d07-9319-415b-98eb-9371d223c1cc" />
+<img width="581" height="517" alt="image" src="https://github.com/user-attachments/assets/9ea842a6-f25b-4193-b32e-74c7cdbd3052" />
+<img width="1358" height="725" alt="image" src="https://github.com/user-attachments/assets/43da7e60-c396-43dd-93cf-fa521a4d2590" />
+
+
+
 
 ---
 
