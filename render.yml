@@ -3,7 +3,7 @@ services:
     name: booktracker-app
     env: docker
     plan: free
-    region:  london
+    region:  frankfurt
     envVars:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:postgresql://neondb_owner:npg_icbIj3t2pDka@ep-silent-wildflower-abc2kb6y-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require

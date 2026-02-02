@@ -2,7 +2,7 @@ INSERT INTO users (id, username, password)
 VALUES (1, 'guest', '$2a$10$8.UnS3K98jBWSpsU8z6W6OU96Mv5/WpSTWwD.VpS.U96Mv5/WpSTW')
 ON CONFLICT (id) DO NOTHING;
 
-INSERT IGNORE book (id_book, title, author, genre, finish_date, score, review, user_id)
+INSERT INTO book (id_book, title, author, genre, finish_date, score, review, user_id)
 VALUES
 (1, 'The Count of Monte Cristo', 'Alexandre Dumas', 'Adventure', '2025-01-15', 5, 'The ultimate story of vengeance and redemption. A true masterpiece.', 1),
 (2, 'The Witcher: The Last Wish', 'Andrzej Sapkowski', 'Fantasy', '2025-02-10', 4, 'Excellent introduction to Geralt of Rivia. Gritty and dark folklore.', 1),
