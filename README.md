@@ -1,69 +1,90 @@
-# 📚 BookTracker: Sistema de Gestión de Lecturas Proporcional
+# 📚 BookTracker: Personal Reading Management System
 
-**BookTracker** es una aplicación web full-stack diseñada para centralizar y puntuar el historial de lecturas personales. Este proyecto nació de la necesidad de aplicar arquitecturas robustas en un entorno real, priorizando la experiencia de usuario (UX) y la integridad de los datos.
+**BookTracker** is a full-stack web application designed to centralize, review, and rate your personal reading history. This project demonstrates the implementation of robust architectures in a real-world environment, prioritizing User Experience (UX), security, and data integrity.
 
-**Estado del Proyecto:** Versión 1.0 (Thymeleaf Edition) - Estable.
-
----
-
-## Características Destacadas (Implementadas)
-
-### Gestión Completa (CRUD)
-- Registro detallado de libros: título, autor, fecha de finalización, reseña y puntuación.
-- Edición y borrado con validaciones en tiempo real para evitar datos inconsistentes.
-
-### Navegación Avanzada y UX
-- **Buscador Dinámico:** Filtro de libros por título o autor para facilitar la localización en colecciones extensas.
-- **Paginación Inteligente:** Implementación de navegación por páginas para optimizar la carga y el rendimiento del frontend.
-- **UI de Alto Impacto:** Interfaz responsiva construida con **Bootstrap 5**, incluyendo un selector de estrellas visual para las puntuaciones y confirmaciones de seguridad antes de acciones críticas (borrado).
-
-### Solidez Técnica
-- **Arquitectura en Capas:** Separación estricta entre Controlador, Servicio, Repositorio y Modelo (MVC).
-- **Validación de Datos:** Uso de anotaciones JPA y Bean Validation (`@NotBlank`, `@Min`, `@Max`) para garantizar la calidad de la información.
+**Project Status:** Version 1.1 (Security & Demo Edition) - Stable.
 
 ---
 
-## Stack Tecnológico
+## 📸 App Screenshots
 
-| Tecnología | Uso |
+<div align="center">
+  <img src="path/to/your/dashboard-image.png" alt="Dashboard Preview" width="400">
+  <img src="path/to/your/login-image.png" alt="Login Preview" width="400">
+  <p><em>Add your application screenshots in the assets folder and update the paths above.</em></p>
+</div>
+
+---
+
+## 🌟 Key Features
+
+### Full CRUD Management
+- Detailed book logging: Title, author, genre, finish date, review, and star rating.
+- Advanced editing and deletion with real-time validations.
+
+### Security & Multi-user Support
+- **Spring Security Integration:** Secure authentication and authorization flow.
+- **Custom User Profiles:** Each user manages their own private collection.
+- **Data Protection:** Passwords encrypted using **BCrypt**.
+
+### Professional Demo Mode
+- **Guest Access:** Recreuiters can explore the app with a single click via "Live Demo".
+- **Read-Only Restrictions:** Logic-level protection that allows guests to see the UI and test forms while preventing database modifications.
+- **Automated Data Seeding:** Database pre-populated with curated book data for immediate evaluation.
+
+### Advanced Navigation & UX
+- **Dynamic Search:** Filter books by title, author, date, or score with persistent state across pages.
+- **Smart Pagination:** Optimized server-side navigation for performance.
+- **Responsive UI:** Built with **Bootstrap 5**, featuring custom star-rating components and safe-action confirmations.
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
 | :--- | :--- |
-| **Java 21** | Lenguaje principal (Backend) |
-| **Spring Boot 3.3.6** | Framework de aplicación |
-| **Spring Data JPA** | Gestión de persistencia y abstracción de base de datos |
-| **Thymeleaf** | Motor de plantillas para renderizado server-side |
-| **Bootstrap 5** | Framework de estilos y diseño responsivo |
-| **MySQL** | Base de datos para presistencia de datos |
-| **Maven** | Gestión de dependencias y construcción del proyecto |
+| **Java 21** | Backend Language |
+| **Spring Boot 3.3.6** | Core Framework |
+| **Spring Security** | Authentication & Authorization |
+| **Spring Data JPA** | Data Persistence & Abstraction |
+| **Thymeleaf** | Server-side Template Engine |
+| **MySQL / Docker** | Production Database |
+| **H2 Database** | Testing & Development |
+| **Bootstrap 5** | Responsive Frontend Design |
+| **Maven** | Dependency Management |
 
 ---
 
-## Arquitectura y Patrones
-Para este proyecto se han aplicado buenas prácticas de ingeniería de software que lo hacen escalable y fácil de mantener:
-- **Patrón Repositorio:** Abstracción completa del acceso a datos.
-- **Capa de Servicio:** Desacoplamiento de la lógica de negocio del controlador.
-- **Inyección de Dependencias:** Gestión eficiente de componentes mediante el contenedor de Spring.
+## 🏗 Architecture & Patterns
+The project follows clean code principles and modern engineering patterns:
+- **Layered Architecture:** Strict separation between Controller, Service, Repository, and Model (MVC).
+- **Repository Pattern:** Complete abstraction of data access.
+- **Dependency Injection:** Efficient component management via Spring IoC.
+- **Programmatic Authentication:** Custom logic for seamless "Guest" login experiences.
 
 ---
 
-## Próximos Pasos (Roadmap)
+## 🚀 Roadmap
 
-### Mejoras Inmediatas (v1.x):
-- [ ] **Migración a Producción:** Configurar **PostgreSQL** como base de datos persistente.
-- [ ] **Gestión de Medios:** Implementación de subida de imágenes para las portadas de los libros (Multipart Files).
-- [ ] **Seguridad:** Añadir Spring Security para permitir múltiples usuarios con perfiles privados.
+### Immediate Enhancements (v1.x):
+- [ ] **Cloud Deployment:** Live version hosted on Render/Railrail with PostgreSQL.
+- [ ] **Media Management:** Book cover uploads using Multipart Files and Cloudinary.
+- [ ] **Statistics Dashboard:** Visual charts showing reading habits by genre and time.
 
-### Evolución del Proyecto (v2.0):
-- [ ] **Migración a Arquitectura Desacoplada:** Transformar el backend en una **API REST** pura.
-- [ ] **Frontend Moderno:** Reconstrucción total de la interfaz utilizando **React**, permitiendo una experiencia de Single Page Application (SPA) más fluida y moderna.
-- [ ] **Módulo de Inteligencia Artificial:** Implementación de un motor de recomendaciones basado en los gustos del usuario mediante **Spring AI y Google Gemini API**.
+### Future Evolution (v2.0):
+- [ ] **REST API Migration:** Decoupling the backend into a pure RESTful service.
+- [ ] **Modern Frontend:** Complete UI rebuild using **React** for a Single Page Application (SPA) experience.
+- [ ] **AI Integration:** Personalized reading recommendations using **Spring AI and Google Gemini API**.
 
 ---
 
-## Instalación y Uso
+## ⚙️ Installation & Setup
 
-1. Clonar el repositorio.
-2. Asegurarse de tener instalado **JDK 21**.
-3. Ejecutar desde la terminal:
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/your-user/book-tracker.git](https://github.com/your-user/book-tracker.git)
+2. Setup Database: The project is configured to use MySQL. Ensure you have a local instance or use the provided docker-compose if available
+3. Build and Run:
    ```bash
    ./mvnw spring-boot:run ```
-4. Abrir en el navegador: http://localhost:8080/books
+4. Access the App: Open http://localhost:8080 in your browser.
