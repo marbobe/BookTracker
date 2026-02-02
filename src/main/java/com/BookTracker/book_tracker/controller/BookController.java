@@ -4,16 +4,19 @@ import com.BookTracker.book_tracker.model.Book;
 import com.BookTracker.book_tracker.model.User;
 import com.BookTracker.book_tracker.service.IBookService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 
@@ -79,10 +82,16 @@ public class BookController {
     public String createBook(
             @Valid @ModelAttribute("book") Book book,
             BindingResult result,
-            @AuthenticationPrincipal User user
+            @AuthenticationPrincipal User user,
+            Authentication authentication,
+            RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
             return "new";
+        }
+        if (authentication != null && authentication.getName().equals("guest")) {
+            redirectAttributes.addFlashAttribute("demoMessage", "Demo Mode: You can't add books to the global database, but the form validation works perfectly!");
+            return "redirect:/index";
         }
         book.setUser(user);
         bookService.save(book);
@@ -102,10 +111,16 @@ public class BookController {
     public String updateBook(
             @Valid @ModelAttribute("book") Book book,
             BindingResult result,
-            @AuthenticationPrincipal User user
+            @AuthenticationPrincipal User user, Authentication authentication,
+            RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
             return "edit";
+        }
+
+        if (authentication != null && "guest".equals(authentication.getName())) {
+            redirectAttributes.addFlashAttribute("demoMessage", "Demo Mode: Changes are not saved. Create an account to edit books.");
+            return "redirect:/index";
         }
         book.setUser(user);
         bookService.save(book);
@@ -114,7 +129,12 @@ public class BookController {
 
     // BORRAR
     @GetMapping("/delete/{idBook}")
-    public String deleteBook(@PathVariable Integer idBook) {
+    public String deleteBook(@PathVariable Integer idBook, Authentication authentication,
+                             RedirectAttributes redirectAttributes) {
+        if (authentication != null && "guest".equals(authentication.getName())) {
+            redirectAttributes.addFlashAttribute("demoMessage", "Demo Mode: Deletion is disabled in the shared enviroment.");
+            return "redirect:/index";
+        }
         bookService.deleteById(idBook);
         return "redirect:/index";
     }

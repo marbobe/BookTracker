@@ -15,7 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/login","/register", "/css/**", "/js/**","/favicon.ico", "/images/**").permitAll() // Puertas abiertas para registro y estilos
+                        .requestMatchers("/","/login","/register", "/login/guest", "/css/**", "/js/**","/favicon.ico", "/images/**").permitAll() // Puertas abiertas para registro y estilos
                         .anyRequest().authenticated() // Todo lo demás requiere login
                 )
                 .formLogin(form -> form
