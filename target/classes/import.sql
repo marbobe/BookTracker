@@ -1,6 +1,8 @@
-INSERT IGNORE INTO users (id, username, password)
-VALUES (1, 'guest', '$2a$10$8.UnS3K98jBWSpsU8z6W6OU96Mv5/WpSTWwD.VpS.U96Mv5/WpSTW');
-INSERT IGNORE INTO book (id_book, title, author, genre, finish_date, score, review, user_id)
+INSERT INTO users (id, username, password)
+VALUES (1, 'guest', '$2a$10$8.UnS3K98jBWSpsU8z6W6OU96Mv5/WpSTWwD.VpS.U96Mv5/WpSTW')
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO book (id_book, title, author, genre, finish_date, score, review, user_id)
 VALUES
 (1, 'The Count of Monte Cristo', 'Alexandre Dumas', 'Adventure', '2025-01-15', 5, 'The ultimate story of vengeance and redemption. A true masterpiece.', 1),
 (2, 'The Witcher: The Last Wish', 'Andrzej Sapkowski', 'Fantasy', '2025-02-10', 4, 'Excellent introduction to Geralt of Rivia. Gritty and dark folklore.', 1),
@@ -18,4 +20,5 @@ VALUES
 (14, 'The Shining', 'Stephen King', 'Horror', '2025-12-28', 2, 'A terrifying masterpiece of isolation and psychological breakdown.', 1),
 (15, 'Murder on the Orient Express', 'Agatha Christie', 'Mystery', '2026-01-05', 4, 'The quintessential locked-room mystery with a brilliant twist.', 1),
 (16, 'Frankenstein', 'Mary Shelley', 'Gothic Fiction', '2026-01-20', 5, 'The original sci-fi tragedy. Heartbreaking and deeply philosophical.', 1),
-(17, '1984', 'George Orwell', 'Dystopian', '2026-01-28', 3, 'Terrifyingly relevant even today.', 1);
+(17, '1984', 'George Orwell', 'Dystopian', '2026-01-28', 3, 'Terrifyingly relevant even today.', 1)
+ON CONFLICT (id_book) DO NOTHING;
