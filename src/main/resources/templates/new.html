@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/header::header-section(title='Add Book')}">
 </head>
 <body>
@@ -9,6 +9,10 @@
 <div class="card shadow-sm mt-4">
     <div class="card-body">
         <h3 class="text-center mb-4">Add New Book</h3>
+        <div sec:authorize="isAuthenticated()" th:if="${#authentication.name == 'guest'}" class="alert alert-warning mb-4">
+            <i class="bi bi-shield-lock-fill me-2"></i>
+            <strong>Guest Mode:</strong> You can fill out this form to test the UI, but saving is disabled to keep the demo clean.
+        </div>
     </div>
     <div class="container">
         <form th:action="@{/index/new}" th:object="${book}" method="post">
@@ -68,7 +72,7 @@
             <div class="text-center mb-3">
                 <a th:href="@{/index}" class="btn btn-danger btn-small">Return</a>
 
-                <button type="submit" class="btn btn-warning btn-small me-3">Add</button>
+                <button type="submit" th:classappend="${#authentication.name == 'guest'} ? 'disabled opacity-50'" class="btn btn-warning btn-small me-3">Add</button>
             </div>
         </form>
     </div>

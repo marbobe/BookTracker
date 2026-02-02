@@ -44,3 +44,36 @@ body { background-color: #f7f9fc; }
 }
 
 
+
+  /* Efecto para las cabeceras ordenables */
+    .sortable-header:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+        border-radius: 5px;
+    }
+    .sortable-header a:hover {
+        color: #ffc107 !important; /* Dorado suave al pasar el ratón */
+    }
+    /* Estilo para los botones de la tabla */
+    .btn-action {
+        border-radius: 20px;
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        transition: all 0.3s;
+    }
+    .btn-outline-edit {
+        color: #ffc107;
+        border: 1px solid #ffc107;
+    }
+    .btn-outline-edit:hover {
+        background-color: #ffc107;
+        color: white;
+    }
+    .btn-outline-delete {
+        color: #dc3545;
+        border: 1px solid #dc3545;
+    }
+    .btn-outline-delete:hover {
+        background-color: #dc3545;
+        color: white;
+    }

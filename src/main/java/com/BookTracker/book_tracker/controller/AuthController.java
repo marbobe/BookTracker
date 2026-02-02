@@ -2,6 +2,14 @@ package com.BookTracker.book_tracker.controller;
 
 import com.BookTracker.book_tracker.model.User;
 import com.BookTracker.book_tracker.repository.UserRepository;
+import com.BookTracker.book_tracker.service.CustomUserDetailsService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +22,13 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserDetailsService userDetailsService;
 
     // Inyectamos dependencias
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping("/login")
@@ -43,5 +53,24 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/login?registered=true";
+    }
+
+    @GetMapping("/login/guest")
+    public String loginAsGuest(HttpServletRequest request){
+        try{
+            UserDetails guestUser = userDetailsService.loadUserByUsername("guest");
+            Authentication auth = new UsernamePasswordAuthenticationToken(
+                    guestUser, null, guestUser.getAuthorities());
+
+            SecurityContextHolder.getContext().setAuthentication(auth);
+
+            // 2. Guardamos la sesión en el contexto de la petición
+            HttpSession session = request.getSession(true);
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+            return "redirect:/index";
+        } catch (Exception e) {
+            return "redirect:/login?error";
+        }
     }
 }
