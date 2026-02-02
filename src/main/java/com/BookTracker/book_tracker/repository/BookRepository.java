@@ -13,10 +13,10 @@ import java.time.LocalDate;
 public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b FROM Book b " +
             "WHERE (:user = b.user) " +
-            "AND (:title IS NULL OR LOWER(CAST(b.title AS string)) LIKE LOWER(CONCAT('%', CAST(:title AS string), '%'))) " +
-            "AND (:author IS NULL OR LOWER(CAST(b.author AS string)) LIKE LOWER(CONCAT('%', CAST(:author AS string), '%'))) " +
-            "AND (:finishDate IS NULL OR b.finishDate <= :finishDate) " +
-            "AND (:score IS NULL OR b.score >= :score)")
+            "AND (CAST(:title AS string) IS NULL OR LOWER(CAST(b.title AS string)) LIKE LOWER(CONCAT('%', CAST(:title AS string), '%'))) " +
+            "AND (CAST(:author AS string) IS NULL OR LOWER(CAST(b.author AS string)) LIKE LOWER(CONCAT('%', CAST(:author AS string), '%'))) " +
+            "AND (CAST(:finishDate AS localdate) IS NULL OR b.finishDate <= :finishDate) " +
+            "AND (CAST(:score AS integer) IS NULL OR b.score >= :score)")
     Page<Book> findByFilters(
             @Param("title") String title,
             @Param("author") String author,
