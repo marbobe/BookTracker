@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: booktracker-app
+    env: docker
+    plan: free
+    region:  london
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://neondb_owner:npg_icbIj3t2pDka@ep-silent-wildflower-abc2kb6y-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: SPRING_DATASOURCE_USERNAME
+        value: marbou96
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+
+
+
+''
