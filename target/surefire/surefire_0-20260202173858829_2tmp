@@ -1,9 +1,0 @@
-#surefire_0
-#Mon Feb 02 17:38:58 CET 2026
-basedir=/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker
-idea.version=2025.3.2
-jansi.passthrough=true
-localRepository=/home/mar/.m2/repository
-maven.ext.class.path=/snap/intellij-idea-community/709/plugins/maven/lib/maven-event-listener.jar
-maven.repo.local=/home/mar/.m2/repository
-style.color=always
