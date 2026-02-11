@@ -30,8 +30,8 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public Book findById(Integer idBook) {
-        return repository.findById(idBook).orElseThrow(() -> new BookNotFoundException("El libro con ID " + idBook + " no existe en nuestra biblioteca."));
+    public Book findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new BookNotFoundException("El libro con ID " + id + " no existe en nuestra biblioteca."));
     }
 
     @Override
@@ -40,8 +40,8 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public void deleteById(Integer idBook){
-        repository.deleteById(idBook);
+    public void deleteById(Long id){
+        repository.deleteById(id);
     }
 
     @Override

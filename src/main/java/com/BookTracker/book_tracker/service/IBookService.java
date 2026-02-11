@@ -12,9 +12,9 @@ public interface IBookService {
 
     public Page<Book> getBooks(Pageable pageable);
     public List<Book> findAll();
-    public Book findById(Integer id);
+    public Book findById(Long id);
     public void save(Book book);
-    public void deleteById(Integer id);
+    public void deleteById(Long id);
 
     Page<Book> findByFilters(String title, String author, LocalDate finishDate, Integer score, Pageable pageable);
 

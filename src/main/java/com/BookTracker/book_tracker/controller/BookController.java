@@ -45,7 +45,7 @@ public class BookController {
 
         // Si no hay sorting, ordenar por ID
         if(sortField == null || sortField.isEmpty()) {
-            sortField = "idBook";
+            sortField = "id";
             sortDir = "asc";
         }
 
@@ -99,9 +99,9 @@ public class BookController {
     }
 
     // FORM EDITAR
-    @GetMapping("/edit/{idBook}")
-    public String editBook(@PathVariable Integer idBook, Model model) {
-        Book book = bookService.findById(idBook);
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable Long id, Model model) {
+        Book book = bookService.findById(id);
         model.addAttribute("book", book);
         return "edit";
     }
@@ -128,14 +128,14 @@ public class BookController {
     }
 
     // BORRAR
-    @GetMapping("/delete/{idBook}")
-    public String deleteBook(@PathVariable Integer idBook, Authentication authentication,
+    @GetMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id, Authentication authentication,
                              RedirectAttributes redirectAttributes) {
         if (authentication != null && "guest".equals(authentication.getName())) {
             redirectAttributes.addFlashAttribute("demoMessage", "Demo Mode: Deletion is disabled in the shared enviroment.");
             return "redirect:/index";
         }
-        bookService.deleteById(idBook);
+        bookService.deleteById(id);
         return "redirect:/index";
     }
 

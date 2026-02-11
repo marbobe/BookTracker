@@ -17,11 +17,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 @ToString
+@Table(name= "books")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBook;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @SequenceGenerator(name = "book_seq", sequenceName = "book_sequence", allocationSize = 1)
+    private Long id;
 
     @NotBlank(message = "Title is required")
     private String title;
@@ -43,6 +45,7 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
     private User user;
 
 }
