@@ -33,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // NUNCA guardes contraseñas en texto plano. BCrypt las encripta.
+        // BCrypt encripta contraseñas
         return new BCryptPasswordEncoder();
     }
 }

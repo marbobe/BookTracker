@@ -6,7 +6,7 @@
 <div th:replace="~{fragments/navigation::navigation-section}"></div>
 
 <main class="content-wrapper d-flex align-items-center py-5">
-<div class="container mt-5">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card shadow border-0">
@@ -38,6 +38,11 @@
                         <div th:if="${param.logout}" class="alert alert-success d-flex align-items-center" role="alert">
                             <i class="bi bi-info-circle-fill me-2"></i>
                             <div>You have been logged out</div>
+                        </div>
+
+                        <div th:if="${param.registered}" class="alert alert-success d-flex align-items-center" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <div>You have registered successfully</div>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm">Login</button>

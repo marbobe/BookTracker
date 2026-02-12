@@ -31,7 +31,7 @@ public class BookService implements IBookService{
 
     @Override
     public Book findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new BookNotFoundException("El libro con ID " + id + " no existe en nuestra biblioteca."));
+        return repository.findById(id).orElseThrow(() -> new BookNotFoundException("The book with ID " + id + " doesn't exists in our library"));
     }
 
     @Override

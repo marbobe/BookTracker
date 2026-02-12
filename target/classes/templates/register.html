@@ -6,7 +6,7 @@
 <div th:replace="~{fragments/navigation::navigation-section}"></div>
 
 <main class="content-wrapper d-flex align-items-center py-5">
-<div class="container mt-5">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card shadow border-0">
@@ -15,10 +15,6 @@
 
                     <form th:action="@{/register}" th:object="${user}" method="post">
                         <div class="mb-3">
-                            <div th:if="${error}" class="alert alert-warning py-2 small">
-                                <i class="bi bi-exclamation-circle me-2"></i>
-                                <span th:text="${error}"></span>
-                            </div>
                             <label class="form-label font-weight-bold">Choose Username</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person-plus text-primary"></i></span>
@@ -32,6 +28,11 @@
                                 <span class="input-group-text"><i class="bi bi-shield-lock text-primary"></i></span>
                                 <input type="password" th:field="*{password}" class="form-control" placeholder="Secure password" required>
                             </div>
+                        </div>
+
+                        <div th:if="${error}" class="alert alert-warning d-flex align-items-center">
+                            <i class="bi bi-exclamation-circle-fill me-2"></i>
+                            <span th:text="${error}"></span>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm">Create Account</button>

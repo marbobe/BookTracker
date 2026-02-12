@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "AND (CAST(:title AS string) IS NULL OR LOWER(CAST(b.title AS string)) LIKE LOWER(CONCAT('%', CAST(:title AS string), '%'))) " +
             "AND (CAST(:author AS string) IS NULL OR LOWER(CAST(b.author AS string)) LIKE LOWER(CONCAT('%', CAST(:author AS string), '%'))) " +
             "AND (CAST(:finishDate AS localdate) IS NULL OR b.finishDate <= :finishDate) " +
-            "AND (CAST(:score AS integer) IS NULL OR b.score >= :score)")
+            "AND (CAST(:score AS integer) IS NULL OR b.score = :score)")
     Page<Book> findByFilters(
             @Param("title") String title,
             @Param("author") String author,
