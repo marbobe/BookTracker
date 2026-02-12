@@ -6,7 +6,7 @@
 <!-- Nav Bar -->
 <div th:replace="~{fragments/navigation::navigation-section}"/>
 
-<div class="card shadow-sm mt-4">
+<div class="card shadow-sm my-4">
     <div class="card-body">
         <h3 class="text-center mb-4">Add New Book</h3>
         <div sec:authorize="isAuthenticated()" th:if="${#authentication.name == 'guest'}" class="alert alert-warning mb-4">
@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="genre" class="form-label">Genre</label>
-                <input type="text" class="form-control" id="genre" th:field="*{genre}">
+                <input type="text" class="form-control" id="genre" name="genre" th:field="*{genre}">
                 <div th:if="${#fields.hasErrors('genre')}" class="text-danger">
                     <p th:errors="*{genre}">Invalid genre</p>
                 </div>

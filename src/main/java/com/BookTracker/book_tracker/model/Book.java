@@ -9,8 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -33,6 +35,7 @@ public class Book {
 
     private String genre;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Finish date cannot be in the future")
     private LocalDate finishDate;
 
@@ -47,5 +50,13 @@ public class Book {
     @JoinColumn(name = "user_id", nullable = false)
     @ToString.Exclude
     private User user;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 }

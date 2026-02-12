@@ -43,9 +43,9 @@ public class BookController {
                             @RequestParam(required = false) String sortField,
                             @RequestParam(required = false) String sortDir) {
 
-        // Si no hay sorting, ordenar por ID
+        // Si no hay sorting, ordenar por tiempo creación
         if(sortField == null || sortField.isEmpty()) {
-            sortField = "id";
+            sortField = "createdAt";
             sortDir = "desc";
         }
 
@@ -122,8 +122,18 @@ public class BookController {
             redirectAttributes.addFlashAttribute("demoMessage", "Demo Mode: Changes are not saved. Create an account to edit books.");
             return "redirect:/index";
         }
-        book.setUser(user);
-        bookService.save(book);
+        Book bookExistente = bookService.findById(book.getId());
+
+        // Actualizar solo los campos permitidos
+        bookExistente.setTitle(book.getTitle());
+        bookExistente.setAuthor(book.getAuthor());
+        bookExistente.setGenre(book.getGenre());
+        bookExistente.setFinishDate(book.getFinishDate());
+        bookExistente.setScore(book.getScore());
+        bookExistente.setReview(book.getReview());
+
+        // El 'createdAt' y el 'user' ya están en 'bookExistente'
+        bookService.save(bookExistente);
         return "redirect:/index";
     }
 
