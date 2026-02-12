@@ -51,7 +51,12 @@
                     <table class="table table-hover align-middle text-center">
                         <thead class="bg-gradient-primary text-black" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         <tr>
-                            <th scope="col" class="py-3">ID</th>
+                            <th scope="col" class="py-3 sortable-header">
+                                <a th:href="@{/index(page=0, size=${bookPage.size}, sortField='id', sortDir=${reverseSortDir}, title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"
+                                class="text-black text-decoration-none d-block">
+                                    ID<i th:if="${sortField == 'id'}" th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                                </a>
+                            </th>
 
                             <th scope="col" class="py-3 sortable-header">
                                 <a th:href="@{/index(page=0, size=${bookPage.size}, sortField='title', sortDir=${reverseSortDir}, title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"

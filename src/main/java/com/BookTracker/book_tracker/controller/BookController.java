@@ -46,7 +46,7 @@ public class BookController {
         // Si no hay sorting, ordenar por ID
         if(sortField == null || sortField.isEmpty()) {
             sortField = "id";
-            sortDir = "asc";
+            sortDir = "desc";
         }
 
         Pageable pageable = PageRequest.of(page, size,

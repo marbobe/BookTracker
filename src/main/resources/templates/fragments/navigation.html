@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:fragment="navigation-section" th:remove="tag">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary  py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" th:href="@{/}">
+            <a class="navbar-brand fw-bold" th:href="${#authorization.expression('isAuthenticated()')} ? @{/index} : @{/}">
                 <i class="bi bi-book-half"></i> BookTracker
             </a>
 
@@ -25,7 +25,7 @@
                         <a class="btn btn-outline-light border-0 rounded-pill fw-semibold me-2" th:href="@{/login}">Login</a>
                     </li>
                     <li class="nav-item ms-2" sec:authorize="!isAuthenticated()">
-                        <a class="btn btn-outline-light px-4 rounded-pill fw-bold btn-sm" th:href="@{/register}">Sign Up</a>
+                        <a class="btn btn-outline-light px-4 rounded-pill fw-bold" th:href="@{/register}">Sign Up</a>
                     </li>
 
                     <li class="nav-item ms-lg-3" sec:authorize="isAuthenticated()">
