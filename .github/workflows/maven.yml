@@ -1,3 +1,9 @@
+# ---------------------------------------------------------------------
+# CI Workflow for BookTracker
+# ---------------------------------------------------------------------
+# This pipeline builds the Java application, runs unit tests, and packages
+# the artifact using Maven whenever code is pushed to the main branch.
+# ---------------------------------------------------------------------
 name: Java CI with Maven
 
 on:
