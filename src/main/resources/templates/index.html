@@ -72,7 +72,12 @@
                                 </a>
                             </th>
 
-                            <th scope="col" class="py-3">Genre</th>
+                            <th scope="col" class="py-3 sortable-header">
+                                <a th:href="@{/index(page=0, size=${bookPage.size}, sortField='genre', sortDir=${reverseSortDir}, title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"
+                                   class="text-black text-decoration-none d-block">
+                                    Genre <i th:if="${sortField == 'genre'}" th:classappend="${sortDir == 'asc'} ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+                                </a>
+                            </th>
 
                             <th scope="col" class="py-3 sortable-header">
                                 <a th:href="@{/index(page=0, size=${bookPage.size}, sortField='finishDate', sortDir=${sortField == 'finishDate' ? reverseSortDir : 'asc'}, title=${title}, author=${author}, finishDate=${finishDate}, score=${score})}"
@@ -98,7 +103,7 @@
                             <td class="fw-bold text-muted" th:text="${book.displayIndex}"></td>
                             <td th:text="${book.title}" class="fw-semibold"></td>
                             <td th:text="${book.author}"></td>
-                            <td><span class="badge bg-light text-dark fw-normal border" th:text="${book.genre}"></span></td>
+                            <td><span class="badge bg-light text-dark fw-normal border" th:text="${book.genre?.displayName}"></span></td>
                             <td th:text="${book.finishDate}"></td>
 
                             <td>

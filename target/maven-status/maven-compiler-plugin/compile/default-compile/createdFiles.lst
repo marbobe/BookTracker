@@ -8,6 +8,7 @@ com/BookTracker/book_tracker/service/BookService.class
 com/BookTracker/book_tracker/exception/BookNotFoundException.class
 com/BookTracker/book_tracker/config/SecurityConfig.class
 com/BookTracker/book_tracker/exception/GlobalExceptionHandler.class
+com/BookTracker/book_tracker/model/Genre.class
 com/BookTracker/book_tracker/model/Book.class
 com/BookTracker/book_tracker/repository/UserRepository.class
 com/BookTracker/book_tracker/repository/BookRepository.class

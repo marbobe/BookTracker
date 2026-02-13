@@ -38,7 +38,9 @@ public class Book {
     @NotBlank(message = "Author is required")
     private String author;
 
-    private String genre;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Genre genre;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Finish date cannot be in the future")

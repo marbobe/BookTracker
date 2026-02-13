@@ -6,6 +6,7 @@
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/exception/BookNotFoundException.java
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/exception/GlobalExceptionHandler.java
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/model/Book.java
+/home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/model/Genre.java
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/model/User.java
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/repository/BookRepository.java
 /home/mar/Documentos/PROJECTES/JAVA/BookTraker/BookTracker/src/main/java/com/BookTracker/book_tracker/repository/UserRepository.java

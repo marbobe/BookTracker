@@ -29,7 +29,12 @@
             </div>
             <div class="mb-3">
                 <label for="genre" class="form-label">Genre</label>
-                <input type="text" class="form-control" id="genre"  name="genre" th:field="*{genre}">
+                <select class="form-select" id="genre" name="genre" th:field="*{genre}">
+                    <option value="" disabled selected>Select a genre...</option>
+                    <option th:each="genreOpt : ${T(com.BookTracker.book_tracker.model.Genre).values()}"
+                            th:value="${genreOpt}"
+                            th:text="${genreOpt.displayName}"></option>
+                </select>
                 <div th:if="${#fields.hasErrors('genre')}" class="text-danger">
                     <p th:errors="*{genre}">Invalid genre</p>
                 </div>
