@@ -31,4 +31,4 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build and Test
-        run: ./mvnw clean verify -Dspring.profiles.active=test
+        run: mvn clean verify -Dspring.profiles.active=test
