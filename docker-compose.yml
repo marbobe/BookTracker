@@ -1,4 +1,7 @@
 services:
+  # ---------------------------------------------------------------------------
+  # Database Service (PostgreSQL)
+  # ---------------------------------------------------------------------------
   db:
     image: postgres:16
     container_name: postgres_db
@@ -12,6 +15,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  # ---------------------------------------------------------------------------
+  # Application Service (Spring Boot)
+  # ---------------------------------------------------------------------------
   app:
     build: .
     container_name: spring_app

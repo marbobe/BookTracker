@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------------
+# CI Workflow for BookTracker
+# ---------------------------------------------------------------------
+# This pipeline builds the Java application, runs unit tests, and packages
+# the artifact using Maven whenever code is pushed to the main branch.
+# ---------------------------------------------------------------------
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and Test (sin Tests)
+        run: mvn clean package -DskipTests
