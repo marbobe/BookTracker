@@ -69,7 +69,7 @@ The project follows clean code principles and modern engineering patterns:
 ## 🚀 Roadmap
 
 ### Immediate Enhancements (v1.x):
-- [ ] **Cloud Deployment:** Live version hosted on Render/Railrail with PostgreSQL.
+- [X] **Cloud Deployment:** Live version hosted on Render/Railrail with PostgreSQL.
 - [ ] **Media Management:** Book cover uploads using Multipart Files and Cloudinary.
 - [ ] **Statistics Dashboard:** Visual charts showing reading habits by genre and time.
 
@@ -88,5 +88,5 @@ The project follows clean code principles and modern engineering patterns:
 2. Setup Database: The project is configured to use MySQL. Ensure you have a local instance or use the provided docker-compose if available
 3. Build and Run:
    ```bash
-   ./mvnw spring-boot:run ```
+   ./mvnw spring-boot:run 
 4. Access the App: Open http://localhost:8080 in your browser.
