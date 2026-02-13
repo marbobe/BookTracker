@@ -5,10 +5,10 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -17,9 +17,14 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @ToString
-@Table(name= "books")
+@Table(name= "books", indexes = {
+        @Index(name = "idx_books_created_active", columnList = "user_id, active, created_at")
+})
+@SQLDelete(sql = "UPDATE books SET active = false WHERE id = ?")
+@SQLRestriction("active = true")
 public class Book {
 
     @Id
@@ -51,8 +56,14 @@ public class Book {
     @ToString.Exclude
     private User user;
 
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Transient
+    private Long displayIndex;
 
     @PrePersist
     protected void onCreate() {

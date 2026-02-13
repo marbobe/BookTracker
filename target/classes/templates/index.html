@@ -94,10 +94,8 @@
                         </thead>
 
                         <tbody class="bg-white">
-                        <tr th:each="book, iterStat : ${bookPage.content}">
-                            <td class="fw-bold text-muted"
-                                th:text="${book.createdAt}">
-                            </td>
+                        <tr th:each="book : ${bookPage.content}">
+                            <td class="fw-bold text-muted" th:text="${book.displayIndex}"></td>
                             <td th:text="${book.title}" class="fw-semibold"></td>
                             <td th:text="${book.author}"></td>
                             <td><span class="badge bg-light text-dark fw-normal border" th:text="${book.genre}"></span></td>

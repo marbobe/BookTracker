@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b " +
@@ -25,4 +26,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             @Param("user") User user,
             Pageable pageable
     );
+
+    @Query("SELECT COUNT(b) + 1 FROM Book b WHERE (b.createdAt < :date OR (b.createdAt = :date AND b.id < :id)) AND b.active = true AND b.user = :user")
+    Long getDisplaySequenceNumber(
+            @Param("date")LocalDateTime date,
+            @Param("id") Long id,
+            @Param("user") User user
+            );
 }
