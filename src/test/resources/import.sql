@@ -1,4 +1,4 @@
-INSERT INTO users (id, username, password)
+INSERT INTO app_users (id, username, password)
 VALUES (1, 'guest', '$2a$10$8.UnS3K98jBWSpsU8z6W6OU96Mv5/WpSTWwD.VpS.U96Mv5/WpSTW');
 
 INSERT INTO books (id, title, author, genre, finish_date, score, review, user_id,created_at, active)

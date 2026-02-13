@@ -13,11 +13,11 @@ import java.util.List;
  * Represents a registered user in the system and acts as the Security Principal.
  * <p>
  * This entity implements Spring Security's {@link UserDetails} interface, allowing it to be
- * used directly by the authentication manager. It maps to the "users" table and holds
+ * used directly by the authentication manager. It maps to the "app_users" table and holds
  * both the account credentials and the relationship to the user's data (Books).
  */
 @Entity
-@Table(name = "users")
+@Table(name = "app_users")
 @Getter
 @Setter
 @NoArgsConstructor
