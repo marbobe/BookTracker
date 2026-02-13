@@ -11,5 +11,6 @@ com/BookTracker/book_tracker/exception/GlobalExceptionHandler.class
 com/BookTracker/book_tracker/model/Genre.class
 com/BookTracker/book_tracker/model/Book.class
 com/BookTracker/book_tracker/repository/UserRepository.class
+com/BookTracker/book_tracker/model/UserRegistrationDto.class
 com/BookTracker/book_tracker/repository/BookRepository.class
 com/BookTracker/book_tracker/BookTrackerApplication.class

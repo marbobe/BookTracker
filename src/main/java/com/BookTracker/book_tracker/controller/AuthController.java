@@ -1,10 +1,12 @@
 package com.BookTracker.book_tracker.controller;
 
 import com.BookTracker.book_tracker.model.User;
+import com.BookTracker.book_tracker.model.UserRegistrationDto;
 import com.BookTracker.book_tracker.repository.UserRepository;
 import com.BookTracker.book_tracker.service.CustomUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,22 +39,34 @@ public class AuthController {
         return "login";
     }
 
+    /**
+     * Enviamos el DTO vacío en lugar del user
+     * @param model
+     * @return
+     */
     @GetMapping("/register")
     public String registerForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserRegistrationDto());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") User user, Model model) {
+    public String registerUser(@Valid @ModelAttribute("user") UserRegistrationDto userDto, BindingResult result, Model model) {
 
-        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+        if(result.hasErrors()){
+            return "register";
+        }
+
+        if(userRepository.findByUsername(userDto.getUsername()).isPresent()){
             model.addAttribute("error", "Username already exist. Please choose another one.");
             return "register";
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        User newUser = new User();
+        newUser.setUsername(userDto.getUsername());
+        newUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+        userRepository.save(newUser);
         return "redirect:/login?registered=true";
     }
 
